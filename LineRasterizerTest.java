@@ -33,7 +33,8 @@ public class LineRasterizerTest extends PApplet {
         endpoint2 = new Point(40, 35);
 
         // Create rasterizer instance
-        rasterizer = new DDARasterizer();
+        rasterizer = new MidpointCircleRasterizer();
+
     }
 
     public void draw() {
