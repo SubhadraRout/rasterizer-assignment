@@ -9,7 +9,6 @@ class Point {
     }
 }
 
-
 public class LineRasterizerTest extends PApplet {
 
     // Global variables
@@ -34,7 +33,7 @@ public class LineRasterizerTest extends PApplet {
         endpoint2 = new Point(40, 35);
 
         // Create rasterizer instance
-        rasterizer = new BresenhamRasterizer();
+        rasterizer = new DDARasterizer();
     }
 
     public void draw() {
@@ -61,28 +60,28 @@ public class LineRasterizerTest extends PApplet {
         // Draw reference line (1px thin line)
         stroke(255, 0, 0);
         strokeWeight(1);
-        line(endpoint1.x * CELL_SIZE + CELL_SIZE/2,
-             endpoint1.y * CELL_SIZE + CELL_SIZE/2,
-             endpoint2.x * CELL_SIZE + CELL_SIZE/2,
-             endpoint2.y * CELL_SIZE + CELL_SIZE/2);
+        line(endpoint1.x * CELL_SIZE + CELL_SIZE / 2,
+                endpoint1.y * CELL_SIZE + CELL_SIZE / 2,
+                endpoint2.x * CELL_SIZE + CELL_SIZE / 2,
+                endpoint2.y * CELL_SIZE + CELL_SIZE / 2);
 
         // Draw endpoints
         fill(255, 100, 100);
         stroke(200, 50, 50);
         strokeWeight(2);
-        ellipse(endpoint1.x * CELL_SIZE + CELL_SIZE/2,
-                endpoint1.y * CELL_SIZE + CELL_SIZE/2,
+        ellipse(endpoint1.x * CELL_SIZE + CELL_SIZE / 2,
+                endpoint1.y * CELL_SIZE + CELL_SIZE / 2,
                 ENDPOINT_RADIUS * 2, ENDPOINT_RADIUS * 2);
-        ellipse(endpoint2.x * CELL_SIZE + CELL_SIZE/2,
-                endpoint2.y * CELL_SIZE + CELL_SIZE/2,
+        ellipse(endpoint2.x * CELL_SIZE + CELL_SIZE / 2,
+                endpoint2.y * CELL_SIZE + CELL_SIZE / 2,
                 ENDPOINT_RADIUS * 2, ENDPOINT_RADIUS * 2);
     }
 
     public void mousePressed() {
         // Check if clicking on endpoint1
         float d1 = dist(mouseX, mouseY,
-                        endpoint1.x * CELL_SIZE + CELL_SIZE/2,
-                        endpoint1.y * CELL_SIZE + CELL_SIZE/2);
+                endpoint1.x * CELL_SIZE + CELL_SIZE / 2,
+                endpoint1.y * CELL_SIZE + CELL_SIZE / 2);
         if (d1 < ENDPOINT_RADIUS) {
             dragging = endpoint1;
             return;
@@ -90,8 +89,8 @@ public class LineRasterizerTest extends PApplet {
 
         // Check if clicking on endpoint2
         float d2 = dist(mouseX, mouseY,
-                        endpoint2.x * CELL_SIZE + CELL_SIZE/2,
-                        endpoint2.y * CELL_SIZE + CELL_SIZE/2);
+                endpoint2.x * CELL_SIZE + CELL_SIZE / 2,
+                endpoint2.y * CELL_SIZE + CELL_SIZE / 2);
         if (d2 < ENDPOINT_RADIUS) {
             dragging = endpoint2;
             return;
@@ -113,8 +112,7 @@ public class LineRasterizerTest extends PApplet {
         dragging = null;
     }
 
-    public static void main(String[]args) {
+    public static void main(String[] args) {
         PApplet.main("LineRasterizerTest");
     }
 }
-
